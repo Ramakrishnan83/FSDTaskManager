@@ -12,9 +12,12 @@ services:
   ports:
   - "3636:3636" #specify ports mapping
   links:
-  - databasemongo # link this service to the database service
+  - mongo # link this service to the database service
  
- databasemongo: # name of the third service
-  image: mongo # specify image to build container from
+ mongo: # name of the third service
+  image: mongo:latest # specify image to build container from
+  volumes:
+  - ./data:/data/db
+  command: --smallfiles
   ports:
   - "27017:27017" # specify port forwarding
